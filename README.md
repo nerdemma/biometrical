@@ -12,8 +12,7 @@
 
 ## 🛠️ Requisitos Previos
 
-- **Lenguajes**: Node.js (v16.0.0+) o Python (3.8+)
-- **Base de Datos**: MongoDB (v5.0+)
+- **Lenguajes**: Python (3.8+)
 - **Dependencias Core**: OpenCV, Pillow, dotenv.
 - **Hardware Mínimo**: Optimizado para funcionar desde 2 núcleos en adelante.
 
@@ -23,3 +22,4 @@
    ```bash
    git clone [https://github.com/nerdemma/biometrical.git](https://github.com/nerdemma/biometrical.git)
    cd biometrical
+   ./biometrical
