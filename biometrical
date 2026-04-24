@@ -1,0 +1,31 @@
+#!/bin/bash
+
+PROJECT_DIR="/biometrical"
+VENV_DIR="$PROJECT_DIR/venv"
+SCRIPT_DIR="$PROJECT_DIR/src"
+
+case "$1" in
+start)
+if [ ! -d "$VENV_DIR" ]; then
+  echo "Virtual environment not found in $VENV_DIR. Please set up the virtual environment first."
+    exit 1
+fi
+
+echo "Biometrial is starting..."
+source "$VENV_DIR/bin/activate"
+python "$SCRIPT_DIR/main.py" & echo "biometrical started with PID $!"
+;;
+
+stop)
+echo "Stopping Biometrial..."
+pkill -f "$SCRIPT_DIR/main.py"
+echo "Biometrial stopped."
+;;
+
+*)
+echo "Usage: $0 {start|stop}"
+;;
+esac
+
+
+

@@ -1,0 +1,8 @@
+# Dependencias mínimas recomendadas
+opencv-python>=4.5
+numpy>=1.21
+Pillow>=9.0
+pytest>=7.0
+# Herramientas de lintern y formateo (opcional)
+black>=23.1.0
+ruff>=0.0.241

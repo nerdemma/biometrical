@@ -1,0 +1,32 @@
+# Proxy module to re-export the standard library 'multiprocessing' module.
+# This avoids import collisions when there is a local file named 'multiprocessing' in the repo.
+import importlib
+import importlib.util
+import sysconfig
+import sys
+from pathlib import Path as _Path
+
+
+def _load_stdlib(name):
+    stdlib_path = _Path(sysconfig.get_paths()['stdlib'])
+    module_file = stdlib_path / (name + '.py')
+    package_init = stdlib_path / name / '__init__.py'
+    if package_init.exists():
+        spec = importlib.util.spec_from_file_location(f"_stdlib_{name}", str(package_init))
+    elif module_file.exists():
+        spec = importlib.util.spec_from_file_location(f"_stdlib_{name}", str(module_file))
+    else:
+        return importlib.import_module(name)
+
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+_std = _load_stdlib('multiprocessing')
+
+# Re-export public attributes from stdlib multiprocessing
+for _k, _v in vars(_std).items():
+    if not _k.startswith('__'):
+        globals()[_k] = _v
+
+__all__ = [k for k in vars(_std) if not k.startswith('__')]
