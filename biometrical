@@ -1,7 +1,15 @@
 #!/bin/bash
 
+# nombre del proyecto
 PROJECT_DIR="/biometrical"
-VENV_DIR="$PROJECT_DIR/venv"
+
+# nombre del entorno virtual
+VENV_NAME="venv"
+
+# directorio del proyecto
+VENV_DIR="$PROJECT_DIR/$VENV_NAME"
+
+# carpeta de scripts
 SCRIPT_DIR="$PROJECT_DIR/src"
 
 case "$1" in
